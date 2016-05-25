@@ -1,0 +1,107 @@
+.social-share-wrapper {
+  position: relative;
+  margin-top: 20px;
+}
+
+.social-share {
+  position: absolute;
+  right: 0;
+  padding: 5.3px 12px;
+  width: 113.3px;
+  height: 30px;
+  font-size: 14px;
+  letter-spacing: 1px;
+  overflow: hidden;
+  background: $white;
+  border: 1px solid $accent-color;
+  border-radius: 5px;
+  text-shadow: 0 -0.5px 0 rgba(0, 0, 0, .1);
+  transition: all .2s ease-in-out;
+  cursor: default;
+  user-select: none;
+  color: $accent-color;
+
+  .text {
+    position: absolute;
+    top: 5.3px;
+    overflow: hidden;
+    width: 55px;
+    height: 16px;
+    text-align: right;
+    z-index: 1;
+
+    em {
+      position: absolute;
+      right: 0;
+      top: 0;
+      transition: right .2s ease-in-out .1s;
+    }
+  }
+
+  .ico-share {
+    position: absolute;
+    top: 5.3px;
+    right: 23.5px;
+    transition: right .2s ease-in-out;
+    width: 13.3px;
+    height: 13.3px;
+  }
+
+  .fa {
+    font-size: 16px !important;
+  }
+
+  .ico {
+    font-size: 14px;
+    position: absolute;
+    top: 5.3px;
+    left: -23.3px;
+    transition: all .2s ease-in-out;
+    display: inline-block;
+    z-index: 2;
+    color: $white;
+  }
+
+  &:hover {
+    background-color: $accent-color;
+    border: 1px solid $white;
+    em {
+      right: -300%;
+      transition-delay: 0;
+    }
+
+    .fa {
+      font-size: 14px !important;
+      color: $white;
+      &:hover:not(.fa-share-alt) {
+        color: darken($white, 5%);
+      }
+    }
+
+    .fb, .tw, .gp {
+      cursor: pointer;
+    }
+
+    .fb {
+      left: 15.3px;
+      transition-delay: 0.3s;
+    }
+
+    .tw {
+      left: 40.5px;
+      transition-delay: 0.2s;
+    }
+
+    .gp {
+      left: 65.7px;
+      transition-delay: 0.1s;
+    }
+
+    .ico-share {
+      top: 5.3px;
+      right: 8.5px;
+      width: 10px;
+      height: 10px;
+    }
+  }
+}

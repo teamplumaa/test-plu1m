@@ -1,0 +1,24 @@
+html {
+  background-color: $accent-color;
+}
+body {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 12px;
+  background-color: $accent-color;
+}
+
+.side-padding-5 {
+  padding: 0 5%;
+}
+
+.flex-container {
+  display: flex;
+
+  &.f-wrap {
+    flex-wrap: wrap;
+  }
+}
+
+.flex-space-btw {
+  justify-content: space-between;
+}

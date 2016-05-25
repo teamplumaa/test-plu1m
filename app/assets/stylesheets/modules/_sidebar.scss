@@ -1,0 +1,36 @@
+aside.main-sidebar {
+  padding-top: 2em;
+  background-color: $accent-color;
+
+  .sidebar-top-stories {
+    ul {
+      list-style: none;
+      padding: 1em;
+    }
+    .top-stories-list-item {
+      display: flex;
+      margin-bottom: 1.1em;
+    }
+    .top-stories-links {
+      padding-bottom: 1em;
+      min-width: 80%;
+      border-bottom: 1px solid $border-color;
+      .post-title {
+        color: #fffbe5;
+        font-size: 14px;
+        text-decoration: none;
+        &:hover {
+          color: #fffbe5;
+        }
+      }
+      .popover-link > a {
+        font-size: 12px;
+        color: #fffbe5;
+        text-decoration: none;
+        &:hover {
+          color: #fffbe5;
+        }
+      }
+    }
+  }
+}

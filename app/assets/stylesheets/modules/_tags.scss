@@ -1,0 +1,23 @@
+.tags-wrapper {
+  padding-top: 22px;
+  padding-bottom: 22px;
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+a.tag {
+  color: $white;
+  background-color: $accent-color;
+  padding: 0.5em 0.7em;
+  border: 1px solid $white;
+  @include border-radius($radius);
+  text-decoration: none;
+  margin-right: 10px;
+  margin-bottom: 12px;
+  font-size: 13px;
+  &:hover {
+    border-color: $white;
+    color: $white;
+  }
+}

@@ -1,0 +1,102 @@
+<div class="row" data-animation="fadeInUp-fadeOutDown">
+  <div id="main-post" class="col-md-6 col-md-offset-3 main-content">
+    <% if admin_signed_in? %>
+      <%= feature_post_button_for(@post) %>
+    <% end %>
+
+    <div class="pull-right">
+      <%= render partial: 'posts/social_share', locals: { post: @post } %>
+    </div>
+
+    <%= render 'post_metadata', post: @post %>
+
+    <% if @post.picture? %>
+      <div class="post-picture-wrapper">
+        <%= image_tag @post.picture.url(:thumb) %>
+      </div>
+    <% end %>
+
+    <h3 class="title"><%= @post.title %></h3>
+    <div class="body">
+      <p><%= remove_javascript(@post.body).html_safe %></p>
+    </div>
+
+    <div class="post-tags">
+      <% @post.tags.each do |tag| %>
+        <%= link_to tag.name, tag, class: 'tag' %>
+      <% end %>
+    </div>
+
+    <div class="post-stats clearfix">
+      <div class="pull-left">
+        <%= render partial: 'posts/likes', locals: { post: @post } %>
+      </div>
+
+      <div class="pull-right">
+        <%= render partial: 'posts/bookmarks', locals: { post: @post } %>
+      </div>
+    </div>
+
+    <% if user_signed_in? && current_user?(@post.user) %>
+      <div class="edit-delete-button-wrapper" align="center">
+        <%= link_to "Edit", edit_post_path(@post), class: 'button' %>
+        <%= link_to "Delete", post_path(@post), method: :delete, class: 'button' %>
+      </div>
+    <% end %>
+  </div>
+</div> 
+
+
+<div class="post-panel">
+  <div class="post-show-footer row" data-animation="fadeInUp-fadeOutDown">
+    <% if @related_posts.any? %>
+      <div class="col-md-6 col-md-offset-3 related-stories">
+        <h4 class="small-heading" align="center">Related stories</h4>
+        <% @related_posts.each do |post| %>
+          <%= render partial: 'posts/post_list_item', locals: { post: post } %>
+        <% end %>
+      </div>
+    <% end %>
+    <br>
+
+    <div id="responses" class="col-md-6 col-md-offset-3">
+      <h4 class="small-heading" align="center">Responses</h4>
+      <% if user_signed_in? %>
+        <%= render partial: 'posts/response_editor', locals: { post: @post } %>
+      <% end %>
+
+      <div data-behavior="responses-list">
+        <% if @responses.any? %>
+            <%= render @responses %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>  
+
+
+<div class="post-metadata-bar" data-page="post-metadata-bar">
+  <div class="flex-container" data-behavior="animated-metadata">
+    <div class="post-stats flex-container">
+      <%= render partial: 'posts/likes', locals: { post: @post } %>
+
+      <div>
+        <%= link_to post_path(@post, anchor: 'responses'), class: "response-icon-wrapper" do %>
+          <i class="fa fa-comment-o"></i>
+          <span class="response-count" data-behavior="response-count"><%= @post.responses.size %></span>
+        <% end %>
+      </div>
+
+      <div class="bookmark-button">
+        <%= render partial: 'posts/bookmarks', locals: { post: @post } %>
+      </div>
+    </div>
+    <div class="metabar-author-info flex-container flex-space-btw">
+      <div>
+        <%= avatar_for @post.user, size: 35 %>
+        <%= react_component("PopoverLink", { user_id: @post.user.id, url: user_path(@post.user), children: @post.username }) %>
+      </div>
+      <%= follow_button_for @post.user %>
+    </div>
+  </div>
+</div>
